@@ -11,3 +11,8 @@ def build_seq2seq_model(vocab_size, embedding_dim=128, latent_dim=512):
     decoder_outputs, _, _ = decoder_lstm(decoder_embedding, initial_state=encoder_states)
     decoder_dense = Dense(vocab_size, activation='softmax')
     decoder_outputs = decoder_dense(decoder_outputs)
+
+    model = Model([encoder_inputs, decoder_inputs], decoder_outputs)
+    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+
+    return model, encoder_inputs, decoder_inputs, encoder_states, decoder_embedding, decoder_lstm, decoder_dense
