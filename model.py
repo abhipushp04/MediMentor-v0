@@ -16,3 +16,11 @@ def build_seq2seq_model(vocab_size, embedding_dim=128, latent_dim=512):
     model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
     return model, encoder_inputs, decoder_inputs, encoder_states, decoder_embedding, decoder_lstm, decoder_dense
+
+def prepare_target_data(answer_sequences, vocab_size, max_seq_length):
+    decoder_target_data = np.zeros((len(answer_sequences), max_seq_length, vocab_size), dtype='float32')
+    for i, seq in enumerate(answer_sequences):
+        for t, word_index in enumerate(seq):
+            if t > 0:
+                decoder_target_data[i, t - 1, word_index] = 1.0
+    return decoder_target_data
