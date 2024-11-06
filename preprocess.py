@@ -16,3 +16,9 @@ def load_and_preprocess_data(filepath, num_samples=1000):
     questions = ['<start> ' + q for q in questions]
     answers = ['<start> ' + a + ' <end>' for a in answers]
     return questions, answers
+
+# 2. Tokenization
+def tokenize_and_pad_sequences(questions, answers, max_seq_length=150):
+    tokenizer = Tokenizer(filters='')
+    tokenizer.fit_on_texts(questions + answers)
+    vocab_size = len(tokenizer.word_index) + 1  # +1 for padding token
