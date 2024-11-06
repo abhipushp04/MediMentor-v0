@@ -24,3 +24,7 @@ def prepare_target_data(answer_sequences, vocab_size, max_seq_length):
             if t > 0:
                 decoder_target_data[i, t - 1, word_index] = 1.0
     return decoder_target_data
+
+def train_model(model, question_sequences, answer_sequences, decoder_target_data, batch_size=16, epochs=10):
+    model.fit([question_sequences, answer_sequences], decoder_target_data,
+              batch_size=batch_size, epochs=epochs, validation_split=0.2)
