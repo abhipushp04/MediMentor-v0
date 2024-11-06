@@ -13,3 +13,6 @@ def load_and_preprocess_data(filepath, num_samples=1000):
     data = pd.read_csv(filepath).head(num_samples)
     questions = data['Question'].values
     answers = data['Answer'].values
+    questions = ['<start> ' + q for q in questions]
+    answers = ['<start> ' + a + ' <end>' for a in answers]
+    return questions, answers
