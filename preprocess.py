@@ -33,4 +33,14 @@ def tokenize_and_pad_sequences(questions, answers, max_seq_length=150):
 
     return question_sequences, answer_sequences, tokenizer, vocab_size
 
-
+# Visualization : Sequence Length Distribution
+def plot_sequence_length_distribution(sequences, title="Sequence Length Distribution"):
+    sequence_lengths = [len(seq) for seq in sequences]
+ 
+    plt.figure(figsize=(12, 6))
+    sns.histplot(sequence_lengths, bins=30, kde=True, color='skyblue')
+    plt.title(title)
+    plt.xlabel("Sequence Length")
+    plt.ylabel("Frequency")
+    plt.show()
+ 
