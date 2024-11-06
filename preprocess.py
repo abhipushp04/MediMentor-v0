@@ -22,3 +22,15 @@ def tokenize_and_pad_sequences(questions, answers, max_seq_length=150):
     tokenizer = Tokenizer(filters='')
     tokenizer.fit_on_texts(questions + answers)
     vocab_size = len(tokenizer.word_index) + 1  # +1 for padding token
+
+    # Convert texts to sequences
+    question_sequences = tokenizer.texts_to_sequences(questions)
+    answer_sequences = tokenizer.texts_to_sequences(answers)
+    
+    # Pad sequences
+    question_sequences = pad_sequences(question_sequences, maxlen=max_seq_length, padding='post')
+    answer_sequences = pad_sequences(answer_sequences, maxlen=max_seq_length, padding='post')
+
+    return question_sequences, answer_sequences, tokenizer, vocab_size
+
+
