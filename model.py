@@ -28,3 +28,10 @@ def prepare_target_data(answer_sequences, vocab_size, max_seq_length):
 def train_model(model, question_sequences, answer_sequences, decoder_target_data, batch_size=16, epochs=10):
     model.fit([question_sequences, answer_sequences], decoder_target_data,
               batch_size=batch_size, epochs=epochs, validation_split=0.2)
+
+def create_inference_models(encoder_inputs, encoder_states, decoder_inputs, decoder_embedding, decoder_lstm, decoder_dense, latent_dim):
+    encoder_model = Model(encoder_inputs, encoder_states)
+
+    decoder_state_input_h = Input(shape=(latent_dim,))
+    decoder_state_input_c = Input(shape=(latent_dim,))
+    decoder_states_inputs = [decoder_state_input_h, decoder_state_input_c]
