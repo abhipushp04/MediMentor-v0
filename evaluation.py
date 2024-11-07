@@ -37,3 +37,7 @@ decoder_target_data = prepare_target_data(answer_sequences, vocab_size, 150)
 train_model(model, question_sequences, answer_sequences, decoder_target_data)
 encoder_model, decoder_model = create_inference_models(encoder_inputs, encoder_states, decoder_inputs, decoder_embedding, decoder_lstm, decoder_dense, 512)
 
+input_question = "What are the symptoms of LCM?"
+input_seq = preprocess_input_question(input_question, tokenizer, 150)
+decoded_answer = decode_sequence(input_seq, encoder_model, decoder_model, tokenizer, 150)
+print("Decoded Answer:", decoded_answer)
