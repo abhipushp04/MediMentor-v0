@@ -43,4 +43,10 @@ def plot_sequence_length_distribution(sequences, title="Sequence Length Distribu
     plt.xlabel("Sequence Length")
     plt.ylabel("Frequency")
     plt.show()
+
+# 4. Plotting functions
+def plot_word_frequency(tokenizer, top_n=30):
+    word_counts = tokenizer.word_counts
+    sorted_word_counts = sorted(word_counts.items(), key=lambda x: x[1], reverse=True)[:top_n]
+    words, frequencies = zip(*sorted_word_counts)
  
