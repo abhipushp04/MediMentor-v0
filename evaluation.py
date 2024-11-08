@@ -41,3 +41,9 @@ input_question = "What are the symptoms of LCM?"
 input_seq = preprocess_input_question(input_question, tokenizer, 150)
 decoded_answer = decode_sequence(input_seq, encoder_model, decoder_model, tokenizer, 150)
 print("Decoded Answer:", decoded_answer)
+
+# Evaluation
+reference_answer = "Sample reference answer for comparison."
+bleu_score = calculate_bleu(reference_answer, decoded_answer)
+rouge_score = calculate_rouge(reference_answer, decoded_answer)
+perplexity = calculate_perplexity([0.1, 0.3, 0.6])  # Example logits
