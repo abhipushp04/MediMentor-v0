@@ -33,6 +33,19 @@ def tokenize_and_pad_sequences(questions, answers, max_seq_length=150):
 
     return question_sequences, answer_sequences, tokenizer, vocab_size
 
+# 3. Evaluation Metrics
+def calculate_bleu(reference, candidate):
+    return sentence_bleu([reference.split()], candidate.split())
+
+def calculate_rouge(reference, candidate):
+    scorer = rouge_scorer.RougeScorer(['rouge1', 'rougeL'], use_stemmer=True)
+    return scorer.score(reference, candidate)
+
+def calculate_perplexity(logits):
+    n = len(logits)
+    log_sum = np.sum(np.log(logits))
+    return math.exp(-log_sum / n)
+
 # Visualization : Sequence Length Distribution
 def plot_sequence_length_distribution(sequences, title="Sequence Length Distribution"):
     sequence_lengths = [len(seq) for seq in sequences]
