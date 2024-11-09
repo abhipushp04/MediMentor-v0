@@ -58,9 +58,15 @@ def plot_sequence_length_distribution(sequences, title="Sequence Length Distribu
     plt.show()
 
 # 4. Plotting functions
-def plt.figure(figsize=(12, 8))
+def plot_word_frequency(tokenizer, top_n=30):
+    word_counts = tokenizer.word_counts
+    sorted_word_counts = sorted(word_counts.items(), key=lambda x: x[1], reverse=True)[:top_n]
+    words, frequencies = zip(*sorted_word_counts)
+
+    plt.figure(figsize=(12, 8))
     sns.barplot(y=list(words), x=list(frequencies), palette="viridis")
     plt.title(f"Top {top_n} Most Frequent Words")
     plt.xlabel("Frequency")
     plt.ylabel("Words")
     plt.show()
+    R009 - Visualization 
