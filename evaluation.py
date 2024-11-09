@@ -47,3 +47,7 @@ reference_answer = "Sample reference answer for comparison."
 bleu_score = calculate_bleu(reference_answer, decoded_answer)
 rouge_score = calculate_rouge(reference_answer, decoded_answer)
 perplexity = calculate_perplexity([0.1, 0.3, 0.6])  # Example logits
+
+print(f"BLEU Score: {bleu_score}")
+print(f"ROUGE Score: {rouge_score}")
+print(f"Perplexity: {perplexity}")
