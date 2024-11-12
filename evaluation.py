@@ -1,3 +1,5 @@
+from preprocess import *
+from model import *
 # Evaluating the model
 def decode_sequence(input_seq, encoder_model, decoder_model, tokenizer, max_seq_length):
     states_value = encoder_model.predict(input_seq)
