@@ -69,4 +69,3 @@ def plot_word_frequency(tokenizer, top_n=30):
     plt.xlabel("Frequency")
     plt.ylabel("Words")
     plt.show()
-    R009 - Visualization 
