@@ -74,3 +74,5 @@ After writing your evaluation and tuning scripts (in the evaluation/ folder), st
 git add .
 git commit -m "Add evaluation and tuning scripts"
 git push origin group3-evaluation-tuning
+
+Step 4: Run evaluation.py
